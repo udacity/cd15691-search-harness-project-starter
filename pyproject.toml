@@ -1,0 +1,39 @@
+[project]
+name = "onboarding-agent"
+version = "0.1.0"
+description = "Search-tool MCP servers for The Onboarding Agent"
+requires-python = ">=3.12"
+dependencies = [
+    "mcp==2.3.0",
+    "fastmcp==4.1.0",
+    "chromadb==1.5.9",
+    "openai==3.28.0",
+    "ripgrep-rs==0.4.2",
+    "tree-sitter==0.26.0",
+    "tree-sitter-python==0.25.0",
+    "httpx==0.28.1",
+]
+
+[project.optional-dependencies]
+dev = ["pytest==9.1.1", "ruff==0.17.0", "fastapi==0.143.0", "uvicorn==0.54.0"]
+web-api = ["fastapi==0.143.0", "uvicorn==0.54.0"]
+
+[project.scripts]
+codebase-search-server = "tools.codebase_search.server:main"
+git-history-search-server = "tools.git_history_search.server:main"
+design-doc-search-server = "tools.design_doc_search.server:main"
+web-search-server = "tools.web_search.server:main"
+answer-gate-server = "tools.answer_gate.server:main"
+web-api = "web_api.server:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["tools*", "web_api*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

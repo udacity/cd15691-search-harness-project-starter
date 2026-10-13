@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!--
+  FIXTURE: this is a fabricated snapshot of the CRM's public
+  field-limit documentation.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>CRM API Docs — Field Limits</title>
+</head>
+<body>
+  <h1>Field Limits</h1>
+
+  <p>
+    Each field on an imported record may be at most
+    <strong>255 characters</strong>. Fields longer than this are
+    <strong>silently truncated</strong> on import. No error or warning is
+    returned. Trim or split long values before importing if this could
+    affect your data.
+  </p>
+
+  <p>
+    Note: some fields have additional metadata appended during import
+    post-processing (the exact suffix varies by field). This appended text
+    counts toward the 255-character limit, so a value that is exactly 255
+    characters before import can still end up truncated after processing.
+  </p>
+
+  <h2>Related</h2>
+  <ul>
+    <li><a href="/docs/bulk-import">Bulk Import Guide</a></li>
+    <li><a href="/docs/field-types">Field Types Reference</a></li>
+  </ul>
+</body>
+</html>

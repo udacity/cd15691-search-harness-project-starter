@@ -1,0 +1,16 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start web search API",
+      "detail": "The local stand-in for a web search API that the web-search tool calls, on http://127.0.0.1:8000",
+      "type": "shell",
+      "command": "python3 -m web_api.server",
+      "options": { "cwd": "${workspaceFolder}" },
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "runOptions": { "runOn": "folderOpen" }
+    }
+  ]
+}
