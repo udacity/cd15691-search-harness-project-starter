@@ -30,6 +30,7 @@ SERVER_TO_SOURCE_TYPE = {
     "web-search": "web",
 }
 ANSWER_GATE_TOOL = "answer-gate_submit_answer"
+MCP_SERVERS = (*SERVER_TO_SOURCE_TYPE, ANSWER_GATE_TOOL.split("_", 1)[0])
 
 
 def run_and_export(question: str) -> dict[str, Any]:
@@ -113,7 +114,20 @@ def tool_calls_in_session(session: dict[str, Any]) -> list[dict[str, Any]]:
         if message.get("type") != "assistant":
             continue
         for item in message.get("content", []):
-            if item.get("type") != "tool" or item.get("name") != "execute":
+            if item.get("type") != "tool":
+                continue
+            if item.get("name") != "execute":
+                # With "codemode": false, MCP tools are called directly,
+                # named "<server>_<tool>".
+                if item.get("name", "").split("_", 1)[0] in MCP_SERVERS:
+                    state = item.get("state", {})
+                    calls.append(
+                        {
+                            "tool": item["name"],
+                            "status": state.get("status"),
+                            "input": state.get("input", {}),
+                        }
+                    )
                 continue
             nested = item.get("state", {}).get("metadata", {}).get("toolCalls", [])
             for tc in nested:
