@@ -39,7 +39,7 @@
   "experimental": {
     "openTelemetry": true
   },
-  // TODO 6.1: Add the Langfuse plugin, @langfuse/opencode-observability-plugin@0.5.1,
+  // TODO 6.1: Add the Langfuse plugin, @langfuse/opencode-observability-plugin@0.5.2,
   // so every run is traced.
   // https://opencode.ai/v2/docs/plugins
 }
