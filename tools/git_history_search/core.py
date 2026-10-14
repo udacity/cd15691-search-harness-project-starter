@@ -55,6 +55,8 @@ def search_commits(
     # https://git-scm.com/docs/git-log#Documentation/git-log.txt-formatformat-string
 
     # TODO: Parse each output line into a commit dict and collect them.
+    commits: list[dict[str, Any]] = []
+    commits.append({"commit": ..., "date": ..., "author": ..., "subject": ...})
     return commits
 
 
@@ -98,3 +100,12 @@ def blame_line(file_path: str, line_number: int, path: str = ".") -> dict[str, A
 
     # TODO: Return the commit's metadata and message, plus the file/line
     # it was found at.
+    return {
+        "commit": ...,
+        "author": ...,
+        "author_time": ...,
+        "summary": ...,
+        "message": ...,
+        "file_path": ...,
+        "line_number": ...,
+    }
