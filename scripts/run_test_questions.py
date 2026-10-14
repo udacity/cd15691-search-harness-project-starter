@@ -53,8 +53,7 @@ def check_scenario(scenario: dict[str, Any]) -> dict[str, Any]:
     # confidence means the agent escalated).
 
     # TODO: Compute wall-clock latency from the session's own
-    # info.time.created/idle timestamps (milliseconds since epoch). A run
-    # that was cut short never goes idle, so fall back to its last message.
+    # info.time.created/updated timestamps (milliseconds since epoch).
 
     return {
         "id": scenario["id"],
