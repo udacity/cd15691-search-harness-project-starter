@@ -17,7 +17,7 @@ def test_pages_serves_a_fixture_page():
 @pytest.mark.parametrize(
     "source_file",
     [
-        "../../scripts/test_questions.json",
+        "../../starter_bundle/test_questions.json",
         "../server.py",
         "../../README.md",
         "/etc/hosts",

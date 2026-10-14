@@ -22,7 +22,7 @@ def search_code(
     sub_question: str,
     rationale: str,
     pattern: str,
-    path: str = "sample_repo",
+    path: str = "starter_bundle/sample_repo",
     glob: str | None = None,
     max_results: int = 50,
 ) -> dict[str, Any]:
@@ -30,7 +30,7 @@ def search_code(
     # https://gofastmcp.com/servers/tools#docstring-descriptions
 
     # TODO: Add logging
-    # Refuse anything outside sample_repo/ (see tools/shared/sandbox.py).
+    # Refuse anything outside starter_bundle/sample_repo/ (see tools/shared/sandbox.py).
     ensure_inside_sample_repo(path)
     # TODO: run search code
     # TODO: add logging
@@ -42,14 +42,14 @@ def query_code(
     sub_question: str,
     rationale: str,
     query: str,
-    path: str = "sample_repo",
+    path: str = "starter_bundle/sample_repo",
     max_results: int = 50,
 ) -> dict[str, Any]:
     # TODO: Write the docstring for the tool's description.
     # https://gofastmcp.com/servers/tools#docstring-descriptions
 
     # TODO: Add logging
-    # Refuse anything outside sample_repo/ (see tools/shared/sandbox.py).
+    # Refuse anything outside starter_bundle/sample_repo/ (see tools/shared/sandbox.py).
     ensure_inside_sample_repo(path)
     # TODO: run the query
     # TODO: add logging

@@ -9,7 +9,7 @@ from pathlib import Path
 import pytest
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-SAMPLE_REPO = REPO_ROOT / "sample_repo"
+SAMPLE_REPO = REPO_ROOT / "starter_bundle" / "sample_repo"
 WEB_API_HOST = "127.0.0.1"
 WEB_API_PORT = 8000
 WEB_API_BASE_URL = f"http://{WEB_API_HOST}:{WEB_API_PORT}"
@@ -17,14 +17,14 @@ WEB_API_BASE_URL = f"http://{WEB_API_HOST}:{WEB_API_PORT}"
 
 @pytest.fixture(scope="session", autouse=True)
 def ensure_sample_repo() -> Path:
-    """Clone scripts/sample_repo.bundle if the checkout isn't
+    """Clone starter_bundle/sample_repo.bundle if the checkout isn't
     already present.
     """
     if not (SAMPLE_REPO / "csvcheck" / "validators.py").exists():
         subprocess.run(
             [
                 "bash",
-                str(REPO_ROOT / "scripts" / "clone_sample_repo.sh"),
+                str(REPO_ROOT / "starter_bundle" / "scripts" / "clone_sample_repo.sh"),
             ],
             check=True,
         )

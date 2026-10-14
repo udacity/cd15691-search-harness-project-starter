@@ -4,7 +4,7 @@ from pathlib import Path
 
 from tools.codebase_search import core, server
 
-SAMPLE_REPO = Path(__file__).resolve().parents[1] / "sample_repo"
+SAMPLE_REPO = Path(__file__).resolve().parents[1] / "starter_bundle" / "sample_repo"
 
 
 def test_core_search_code_finds_max_field_length():

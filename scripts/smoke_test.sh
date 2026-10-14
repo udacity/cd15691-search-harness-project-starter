@@ -13,8 +13,8 @@ OPENCODE_VERSION="2.0.26"
 WEB_API_URL="http://127.0.0.1:8000"      # DEFAULT_BASE_URL in tools/web_search/core.py
 EMBEDDING_MODEL="text-embedding-3-small" # _EMBEDDING_MODEL_NAME in tools/design_doc_search/core.py
 MCP_START_TIMEOUT_S=60                   # importing chromadb makes design-doc-search the slowest
-SAMPLE_REPO="sample_repo"                # SAMPLE_REPO in tools/shared/sandbox.py
-SAMPLE_REPO_BUNDLE="scripts/sample_repo.bundle" # unpacked by scripts/clone_sample_repo.sh
+SAMPLE_REPO="starter_bundle/sample_repo" # SAMPLE_REPO in tools/shared/sandbox.py
+SAMPLE_REPO_BUNDLE="starter_bundle/sample_repo.bundle" # unpacked by starter_bundle/scripts/clone_sample_repo.sh
 
 cd "$(dirname "$0")/.." || exit 1
 
@@ -293,7 +293,7 @@ PY
 # The codebase the agent investigates. Git-history search needs its full
 # history, so a shallow or out-of-date checkout fails too.
 heading "Sample repo"
-unpack_hint="Unpack it from the repo root, which replaces sample_repo/: bash scripts/clone_sample_repo.sh"
+unpack_hint="Unpack it from the repo root, which replaces starter_bundle/sample_repo/: bash starter_bundle/scripts/clone_sample_repo.sh"
 bundle_head=$(git bundle list-heads "$SAMPLE_REPO_BUNDLE" 2>/dev/null | awk '$2 == "HEAD" {print $1}')
 if [ -z "$bundle_head" ]; then
     fail "Couldn't read $SAMPLE_REPO_BUNDLE" "It's part of the repo. Restore it with: git checkout -- $SAMPLE_REPO_BUNDLE"

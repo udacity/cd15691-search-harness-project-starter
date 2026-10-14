@@ -1,5 +1,5 @@
 .DS_Store
-/sample_repo/
+/starter_bundle/sample_repo/
 .venv/
 .logs/
 __pycache__/

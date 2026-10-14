@@ -6,6 +6,7 @@ from tools.design_doc_search import core, server
 
 DOCS_DIR = (
     Path(__file__).resolve().parents[1]
+    / "starter_bundle"
     / "sample_repo"
     / "docs"
     / "design"

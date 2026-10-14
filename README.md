@@ -44,11 +44,11 @@ guessing.
   of them are search tools. The fifth, `answer-gate`, provides
   `submit_answer`, which the agent must call at the end of every
   investigation.
-- **Evidence:** everything the agent searches is in `sample_repo/`: a small
-  synthetic codebase (`csvcheck`) with 12 backdated commits of real git
-  history, and design docs. It ships as a git bundle, which you unpack in
-  Setup. `web_api/` serves one fabricated external web page, so web-search
-  results are more controlled.
+- **Evidence:** everything the agent searches is in `starter_bundle/`: a
+  small synthetic codebase (`csvcheck`) with real git history and design
+  docs. It ships as a git bundle, which you unpack in Setup. `web_api/`
+  serves one fabricated external web page, so web-search results are more
+  controlled.
 
 ## Project structure
 
@@ -68,14 +68,11 @@ tools/                                 The five MCP servers (read tools/README.m
   web_search/                            search_web, fetch_page (calls web_api/): TODO 1.10-1.12
   answer_gate/                           submit_answer (the confidence gate): TODO 3.1-3.3
   shared/logging_setup.py                Shared file logger for every server
-  shared/sandbox.py                      Keeps the search tools inside sample_repo/
+  shared/sandbox.py                      Keeps the search tools inside starter_bundle/sample_repo/
 web_api/                               Local stand-in for a web search API (FastAPI)
-sample_repo/                           The codebase the agent investigates (unpacked, not in git)
+starter_bundle/                        Sample repo bundle and test questions (see its README)
 scripts/
-  clone_sample_repo.sh                   Unpacks sample_repo.bundle into sample_repo/
-  sample_repo.bundle                     The sample repo as a git bundle, with all 12 commits
   smoke_test.sh                          Checks your setup before you run the agent
-  test_questions.json                    The three test scenarios the evaluation runs
   run_test_questions.py                  Evaluation: runs the agent on the test questions: TODO 5.1-5.2
   helpers.py                             Provided helpers for run_test_questions.py
 tests/                                 pytest suite for the tools
@@ -133,11 +130,11 @@ python3 -m pip install -e ".[dev]"
 
 3- Unpack the sample repo
 
-The agent investigates `sample_repo/`, a small codebase with real git history.
-It ships as a git bundle, `scripts/sample_repo.bundle`. Unpack it into
-`sample_repo/` at the repo root:
+The agent investigates `starter_bundle/sample_repo/`, a small codebase with
+real git history. It ships as a git bundle, `starter_bundle/sample_repo.bundle`.
+Unpack it into `starter_bundle/sample_repo/`:
 ```bash
-bash scripts/clone_sample_repo.sh
+bash starter_bundle/scripts/clone_sample_repo.sh
 ```
 
 4- Start the web search API
@@ -243,7 +240,7 @@ then register the server in `opencode.jsonc` (TODO 3.4).
 
 ### Task 4: Run the test questions
 
-Run the agent on each question in `scripts/test_questions.json`, the same way
+Run the agent on each question in `starter_bundle/test_questions.json`, the same way
 as in task 2. Q1 and Q3 should be answered with confidence. Q2 should be
 escalated, not guessed.
 

@@ -16,12 +16,12 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 # `python3 scripts/run_test_questions.py` puts only scripts/ on the import
 # path. This lets it import the repo's own `tools` package too.
 sys.path.insert(0, str(REPO_ROOT))
-TEST_QUESTIONS = REPO_ROOT / "scripts" / "test_questions.json"
+TEST_QUESTIONS = REPO_ROOT / "starter_bundle" / "test_questions.json"
 RESULTS_DIR = REPO_ROOT / ".logs" / "test_runs"
 
 # Maps each MCP server name (as it appears in a tool call's "<server>.<tool>"
 # name, normalized below to "<server>_<tool>") to the source-type
-# vocabulary used in scripts/test_questions.json and
+# vocabulary used in starter_bundle/test_questions.json and
 # tools/answer_gate/core.py's SOURCE_TYPES.
 SERVER_TO_SOURCE_TYPE = {
     "codebase-search": "codebase",

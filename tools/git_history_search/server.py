@@ -23,14 +23,14 @@ def search_commits(
     sub_question: str,
     rationale: str,
     query: str,
-    path: str = "sample_repo",
+    path: str = "starter_bundle/sample_repo",
     max_results: int = 20,
 ) -> dict[str, Any]:
     # TODO: Write the docstring for the tool's description.
     # https://gofastmcp.com/servers/tools#docstring-descriptions
 
     # TODO: Add logging
-    # Refuse anything outside sample_repo/ (see tools/shared/sandbox.py).
+    # Refuse anything outside starter_bundle/sample_repo/ (see tools/shared/sandbox.py).
     ensure_inside_sample_repo(path)
     # TODO: run the search
     # TODO: add logging
@@ -44,13 +44,13 @@ def blame_line(
     rationale: str,
     file_path: str,
     line_number: int,
-    path: str = "sample_repo",
+    path: str = "starter_bundle/sample_repo",
 ) -> dict[str, Any]:
     # TODO: Write the docstring for the tool's description.
     # https://gofastmcp.com/servers/tools#docstring-descriptions
 
     # TODO: Add logging
-    # Refuse anything outside sample_repo/ (see tools/shared/sandbox.py).
+    # Refuse anything outside starter_bundle/sample_repo/ (see tools/shared/sandbox.py).
     ensure_inside_sample_repo(path)
     ensure_inside_sample_repo(str(Path(path) / file_path), must_exist=False)
     # TODO: run the blame lookup

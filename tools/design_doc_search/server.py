@@ -23,14 +23,14 @@ def search_docs(
     sub_question: str,
     rationale: str,
     query: str,
-    docs_dir: str = "sample_repo/docs/design",
+    docs_dir: str = "starter_bundle/sample_repo/docs/design",
     max_results: int = 5,
 ) -> dict[str, Any]:
     # TODO: Write the docstring for the tool's description.
     # https://gofastmcp.com/servers/tools#docstring-descriptions
 
     # TODO: Add logging
-    # Refuse anything outside sample_repo/ (see tools/shared/sandbox.py).
+    # Refuse anything outside starter_bundle/sample_repo/ (see tools/shared/sandbox.py).
     ensure_inside_sample_repo(docs_dir)
     # TODO: run the search
     # TODO: add logging

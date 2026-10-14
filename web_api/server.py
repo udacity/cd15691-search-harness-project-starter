@@ -127,7 +127,7 @@ def get_page(request: Request, source_file: str) -> dict[str, Any]:
     text, not just a snippet. `source_file` is the value a /search
     result's own `source_file` field gave you."""
     target = (SOURCES_DIR / source_file).resolve()
-    # Only the fixture pages: "../../scripts/test_questions.json" must not
+    # Only the fixture pages: "../../starter_bundle/test_questions.json" must not
     # reach the rest of the repo. Outside paths get the same 404 as a
     # missing page, so this doesn't reveal what exists elsewhere.
     inside = target.is_relative_to(SOURCES_DIR.resolve())

@@ -4,7 +4,7 @@ from pathlib import Path
 
 from tools.git_history_search import core, server
 
-SAMPLE_REPO = Path(__file__).resolve().parents[1] / "sample_repo"
+SAMPLE_REPO = Path(__file__).resolve().parents[1] / "starter_bundle" / "sample_repo"
 EXPECTED_COMMIT_SUBJECT = "Add field length validation to catch import truncation early"
 
 
