@@ -1,0 +1,23 @@
+[
+  {
+    "id": "Q1",
+    "question": "Why is MAX_FIELD_LENGTH set to 240 in csvcheck/validators.py?",
+    "tool_calls": ["codebase", "git_history", "design_doc", "web"],
+    "expected_answer": "MAX_FIELD_LENGTH is 240 because the CRM silently truncates fields over 255 characters on import, and the CRM also appends up to roughly 15 characters of metadata during import processing before that limit is applied. 240 leaves enough headroom that a value passing validation here still won't get truncated after the CRM's own processing.",
+    "escalate": "no"
+  },
+  {
+    "id": "Q2",
+    "question": "Why doesn't check_row in csvcheck/validators.py validate for ill-formatted columns, only emptiness and field length?",
+    "tool_calls": ["codebase", "git_history", "design_doc"],
+    "expected_answer": "No source explains this. check_row only checks for empty values and field length; no commit, design doc, or external reference discusses column-format validation at all, it appears to be outside the current scope rather than a deliberate, documented decision. This should be escalated to a human to confirm whether it's an intentional boundary or a gap to fill.",
+    "escalate": "yes"
+  },
+  {
+    "id": "Q3",
+    "question": "Why is MAX_ROWS capped at 500000 in csvcheck/reader.py?",
+    "tool_calls": ["codebase", "git_history"],
+    "expected_answer": "MAX_ROWS is capped at 500000 to keep validation runtime under a minute for the largest known files; anything larger needs a batch mode, which wasn't implemented at the time.",
+    "escalate": "no"
+  }
+]

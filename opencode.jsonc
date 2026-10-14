@@ -1,0 +1,47 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "openai/gpt-5.2",
+  "providers": {
+    "openai": {
+      "settings": {
+        "apiKey": "{env:OPENAI_API_KEY}",
+        "baseURL": "{env:OPENAI_BASE_URL}"
+      },
+      "models": {
+        "gpt-5.2": { "modelID": "gpt-5.2" }
+      }
+    }
+  },
+  "permissions": [
+    { "action": "shell", "resource": "*", "effect": "ask" },
+    { "action": "edit", "resource": "*", "effect": "ask" },
+    { "action": "grep", "resource": "*", "effect": "deny" },
+    { "action": "glob", "resource": "*", "effect": "deny" },
+    { "action": "webfetch", "resource": "*", "effect": "deny" },
+    { "action": "websearch", "resource": "*", "effect": "deny" },
+    { "action": "read", "resource": "*", "effect": "deny" },
+    { "action": "browser", "resource": "*", "effect": "deny" }
+  ],
+  // TODO 7.1: For the codebase-search-only baseline, set "disabled": true on
+  // every server except codebase-search and answer-gate, re-run the
+  // evaluation, and compare the two runs in Langfuse. Then set them back.
+  "mcp": {
+    "servers": {
+      // TODO 1.13: Register the four search servers, so the agent can call
+      // them. Each is a "local" server that OpenCode starts with a command:
+      // python3 -m tools.<tool_folder>.server
+      // Set "codemode": false on each, so the model sees every tool's full
+      // docstring instead of just its first line.
+      // https://opencode.ai/v2/docs/mcp-servers
+
+      // TODO 3.4: Register the answer-gate server the same way.
+    }
+  },
+  // TODO 2.2: Set onboarding-agent as the default agent, so OpenCode uses
+  // your prompt when a run doesn't pass --agent.
+  // https://opencode.ai/v2/docs/agents
+  // TODO 6.1: Add the Langfuse plugin, @langfuse/opencode-observability-plugin@0.5.2,
+  // so every run is traced, and turn on OpenCode's OpenTelemetry export:
+  // "experimental": { "openTelemetry": true }
+  // https://opencode.ai/v2/docs/plugins
+}
