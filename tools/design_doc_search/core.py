@@ -134,4 +134,14 @@ def search_docs(
 
     # TODO: Build one hit dict per result: chunk_id, file_name, heading,
     # text, and distance
+    hits: list[dict[str, Any]] = []
+    hits.append(
+        {
+            "chunk_id": ...,
+            "file_name": ...,
+            "heading": ...,
+            "text": ...,
+            "distance": ...,
+        }
+    )
     return hits
