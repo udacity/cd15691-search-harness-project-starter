@@ -30,6 +30,8 @@
       // TODO 1.13: Register the four search servers, so the agent can call
       // them. Each is a "local" server that OpenCode starts with a command:
       // python3 -m tools.<tool_folder>.server
+      // Set "codemode": false on each, so the model sees every tool's full
+      // docstring instead of just its first line.
       // https://opencode.ai/v2/docs/mcp-servers
 
       // TODO 3.4: Register the answer-gate server the same way.
