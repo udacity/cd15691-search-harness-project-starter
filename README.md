@@ -260,7 +260,8 @@ It prints a pass/fail summary and metrics, and saves the full results under
 
 ### Task 6: Trace the agent in Langfuse (TODO 6.1)
 
-Add the Langfuse plugin to `opencode.jsonc`, run the agent, and find its trace
+Add the Langfuse plugin to `opencode.jsonc` and turn on OpenCode's
+OpenTelemetry export. Then run the agent, and find its trace
 in Langfuse (see [Tracing with Langfuse](#tracing-with-langfuse)). Each trace
 shows every tool call, with its tokens, latency and result.
 

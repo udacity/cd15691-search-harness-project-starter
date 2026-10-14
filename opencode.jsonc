@@ -40,10 +40,8 @@
   // TODO 2.2: Set onboarding-agent as the default agent, so OpenCode uses
   // your prompt when a run doesn't pass --agent.
   // https://opencode.ai/v2/docs/agents
-  "experimental": {
-    "openTelemetry": true
-  },
   // TODO 6.1: Add the Langfuse plugin, @langfuse/opencode-observability-plugin@0.5.2,
-  // so every run is traced.
+  // so every run is traced, and turn on OpenCode's OpenTelemetry export:
+  // "experimental": { "openTelemetry": true }
   // https://opencode.ai/v2/docs/plugins
 }
