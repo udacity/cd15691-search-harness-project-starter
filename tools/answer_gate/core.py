@@ -31,6 +31,12 @@ def evaluate_gate(sources: list[dict[str, Any]]) -> dict[str, Any]:
     # comprehension dedupes this for you (see the docstring above).
     # TODO: Build the gate result: whether it passes, which types were
     # seen, how many distinct types, and the total citation count.
+    return {
+        "passes_gate": ...,
+        "distinct_source_types": ...,
+        "distinct_source_count": ...,
+        "total_citations": ...,
+    }
 
 
 # TODO 3.2: Implement submit_answer to validate a final answer against the
@@ -67,3 +73,12 @@ def submit_answer(
 
     # TODO: Package the validated answer, its confidence, whether it was
     # escalated, and the gate result together for the caller.
+    return {
+        "question": ...,
+        "answer": ...,
+        "confidence": ...,
+        "escalated": ...,
+        "escalation_reason": ...,
+        "sources": ...,
+        "gate": ...,
+    }
