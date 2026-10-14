@@ -9,7 +9,7 @@
   {
     "id": "Q2",
     "question": "Why doesn't check_row in csvcheck/validators.py validate for ill-formatted columns, only emptiness and field length?",
-    "tool_calls": ["codebase", "git_history", "design_doc", "web"],
+    "tool_calls": ["codebase", "git_history", "design_doc"],
     "expected_answer": "No source explains this. check_row only checks for empty values and field length; no commit, design doc, or external reference discusses column-format validation at all, it appears to be outside the current scope rather than a deliberate, documented decision. This should be escalated to a human to confirm whether it's an intentional boundary or a gap to fill.",
     "escalate": "yes"
   },
