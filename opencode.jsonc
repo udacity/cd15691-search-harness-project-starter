@@ -35,7 +35,9 @@
       // TODO 3.4: Register the answer-gate server the same way.
     }
   },
-  "default_agent": "onboarding-agent",
+  // TODO 2.2: Set onboarding-agent as the default agent, so OpenCode uses
+  // your prompt when a run doesn't pass --agent.
+  // https://opencode.ai/v2/docs/agents
   "experimental": {
     "openTelemetry": true
   },

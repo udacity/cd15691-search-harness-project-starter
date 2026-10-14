@@ -59,7 +59,7 @@ provided.
 .opencode/agents/onboarding-agent.md   The agent's system prompt (TODO 2.1)
 .vscode/tasks.json                     Starts the web search API when the folder opens in VS Code
 opencode.jsonc                         Harness config: model, permissions, MCP servers, tracing
-                                         (TODO 1.13, 3.4, 6.1, 7.1)
+                                         (TODO 1.13, 2.2, 3.4, 6.1, 7.1)
 pyproject.toml                         Python dependencies (pinned) and pytest settings
 tools/                                 The five MCP servers (read tools/README.md first)
   codebase_search/                       search_code (ripgrep), query_code (tree-sitter): TODO 1.1-1.3
@@ -211,13 +211,14 @@ Check each tool with its tests as you finish it, for example
 `opencode.jsonc` (TODO 1.13), and run the smoke test to check that each one
 starts.
 
-### Task 2: Write the system prompt (TODO 2.1)
+### Task 2: Write the system prompt (TODO 2.1-2.2)
 
 Write the agent's system prompt, in the body of
 `.opencode/agents/onboarding-agent.md`. Tell the agent what it's for, what each
 tool is for, and when to escalate instead of guessing. Every tool call already
 says which sub-question it's answering and why that tool fits, through its
-`sub_question` and `rationale` parameters. Then try the agent:
+`sub_question` and `rationale` parameters. Then set it as the default
+agent in `opencode.jsonc` (TODO 2.2), and try it:
 ```bash
 opencode run --standalone --agent onboarding-agent "Why is MAX_FIELD_LENGTH set to 240 in csvcheck/validators.py?"
 ```
