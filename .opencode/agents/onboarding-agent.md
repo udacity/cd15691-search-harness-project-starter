@@ -17,4 +17,5 @@ request:
 <!--
 TODO 2.1: Write the agent's system prompt. Tell it what it's for, what
 each tool is for, and when to escalate instead of guessing.
+Hint: Use negative examples to tell the agent what not to do.
 -->
