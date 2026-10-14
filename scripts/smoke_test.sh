@@ -9,7 +9,7 @@
 
 set -uo pipefail
 
-OPENCODE_VERSION="2.0.20"
+OPENCODE_VERSION="2.0.26"
 WEB_API_URL="http://127.0.0.1:8000"      # DEFAULT_BASE_URL in tools/web_search/core.py
 EMBEDDING_MODEL="text-embedding-3-small" # _EMBEDDING_MODEL_NAME in tools/design_doc_search/core.py
 MCP_START_TIMEOUT_S=60                   # importing chromadb makes design-doc-search the slowest

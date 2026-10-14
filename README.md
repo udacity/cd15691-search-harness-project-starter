@@ -86,26 +86,26 @@ tests/                                 pytest suite for the tools
 ### Prerequisites
 
 - Python 3.12+ with pip, as `python3`
-- OpenCode 2.0.20 (see [Install OpenCode](#install-opencode))
+- OpenCode 2.0.26 (see [Install OpenCode](#install-opencode))
 - Git
 - Docker, only to run Langfuse on your own machine (see
   [Tracing with Langfuse](#tracing-with-langfuse))
 
 ### Install OpenCode
 
-This project needs OpenCode **2.0.20**. Other versions, 1.x especially, read
+This project needs OpenCode **2.0.26**. Other versions, 1.x especially, read
 `opencode.jsonc` differently. Install it in one of these ways, then check that
-`opencode --version` prints `opencode v2.0.20`.
+`opencode --version` prints `opencode v2.0.26`.
 
 - **Install script** (Linux, macOS). Installs to `~/.opencode/bin` and adds it
   to your PATH:
   ```bash
-  curl -fsSL https://opencode.ai/v2/install | bash -s -- --version 2.0.20
+  curl -fsSL https://opencode.ai/v2/install | bash -s -- --version 2.0.26
   ```
 - **npm** (needs Node.js). The 2.x package is `@opencode/cli`. `opencode-ai`
   is the old 1.x package:
   ```bash
-  npm install -g @opencode/cli@2.0.20
+  npm install -g @opencode/cli@2.0.26
   ```
 
 ### Getting Started
