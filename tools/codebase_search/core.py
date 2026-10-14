@@ -33,12 +33,25 @@ def search_code(
     if not root.exists():
         raise FileNotFoundError(f"search path does not exist: {path}")
 
+    # TODO: Run the ripgrep search via search_structured
+    raw_matches = ...
+
     results: list[dict[str, Any]] = []
     for m in raw_matches:
         # TODO: For each search match, build one result entry: its path
         # made relative to `root`, line number, full line text, and its
         # submatches (each with matched text + start/end byte offsets)
-        pass
+        results.append(
+            {
+                "path": ...,
+                "line_number": ...,
+                "line_text": ...,
+                "match_spans": [
+                    {"text": ..., "start": ..., "end": ...}
+                    for s in m.submatches
+                ],
+            }
+        )
     return results
 
 
@@ -124,5 +137,15 @@ def query_code(
         # captured node, pull out its text and position
         # (start_byte/end_byte, start_point, end_point, type) to
         # build one result entry
+        results.append(
+            {
+                "path": ...,
+                "capture": ...,
+                "node_type": ...,
+                "line_number": ...,
+                "end_line_number": ...,
+                "text": ...,
+            }
+        )
 
     return results
