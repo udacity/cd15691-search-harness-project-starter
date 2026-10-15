@@ -24,7 +24,7 @@
   ],
   // TODO 7.1: For the codebase-search-only baseline, set "disabled": true on
   // every server except codebase-search and answer-gate, re-run the
-  // evaluation, and compare the two runs in Langfuse. Then set them back.
+  // evaluation, and fill in section 3 of RESULTS.md. Then set them back.
   "mcp": {
     "servers": {
       // TODO 1.13: Register the four search servers, so the agent can call

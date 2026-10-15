@@ -70,7 +70,7 @@ tools/                                 The five MCP servers (read tools/README.m
   shared/logging_setup.py                Shared file logger for every server
   shared/sandbox.py                      Keeps the search tools inside starter_bundle/sample_repo/
 web_api/                               Local stand-in for a web search API (FastAPI)
-starter_bundle/                        Sample repo bundle and test questions (see its README)
+starter_bundle/                        Sample repo bundle, test questions and results template (see its README)
 scripts/
   smoke_test.sh                          Checks your setup before you run the agent
   run_test_questions.py                  Evaluation: runs the agent on the test questions: TODO 5.1-5.2
@@ -192,7 +192,10 @@ through the Langfuse plugin you add to `opencode.jsonc` in task 6.
 ## Project tasks
 
 Work through the tasks in order. Each one names the TODO numbers it covers;
-the TODO comments in the code say what each step needs.
+the TODO comments in the code say what each step needs. Tasks 6 and 7 fill in
+your results file, which you submit with your code: copy
+`starter_bundle/results_template.md` to `RESULTS.md` before you start them
+(see the [starter bundle README](starter_bundle/README.md)).
 
 ### Task 1: Build the four search tools (TODO 1.1-1.13)
 
@@ -262,16 +265,20 @@ It prints a pass/fail summary and metrics, and saves the full results under
 ### Task 6: Trace the agent in Langfuse (TODO 6.1)
 
 Add the Langfuse plugin to `opencode.jsonc` and turn on OpenCode's
-OpenTelemetry export. Then run the agent, and find its trace
-in Langfuse (see [Tracing with Langfuse](#tracing-with-langfuse)). Each trace
-shows every tool call, with its tokens, latency and result.
+OpenTelemetry export. Then run the evaluation again, so every test question is
+traced, and find each question's trace in Langfuse (see
+[Tracing with Langfuse](#tracing-with-langfuse)). Each trace shows every tool
+call, with its tokens, latency and result. Paste this run's output into
+section 1 of `RESULTS.md`, and a screenshot of each question's trace into
+section 2.
 
 ### Task 7: Compare with a codebase-search-only baseline (TODO 7.1)
 
 Switch off every server except `codebase-search` and `answer-gate` in
-`opencode.jsonc`, then run the evaluation again. Compare the two runs in
-Langfuse: cost, latency, tool calls, and which questions pass. Then switch the
-servers back on.
+`opencode.jsonc`, then run the evaluation again. Fill in section 3 of
+`RESULTS.md`: this run's output, both runs' pass rate, total cost and total
+tokens, a screenshot of one trace from this run, and why the results differ.
+Then switch the servers back on.
 
 ## Tests
 
