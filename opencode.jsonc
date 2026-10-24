@@ -8,7 +8,8 @@
         "baseURL": "{env:OPENAI_BASE_URL}"
       },
       "models": {
-        "gpt-5.2": { "modelID": "gpt-5.2" }
+        // One tool call per step, so each call can build on the last one's result.
+        "gpt-5.2": { "modelID": "gpt-5.2", "body": { "parallel_tool_calls": false } }
       }
     }
   },
@@ -40,7 +41,7 @@
   // TODO 2.2: Set onboarding-agent as the default agent, so OpenCode uses
   // your prompt when a run doesn't pass --agent.
   // https://opencode.ai/v2/docs/agents
-  // TODO 6.1: Add the Langfuse plugin, @langfuse/opencode-observability-plugin@0.5.2,
+  // TODO 6.1: Add the Langfuse plugin, @langfuse/opencode-observability-plugin@0.6.0,
   // so every run is traced, and turn on OpenCode's OpenTelemetry export:
   // "experimental": { "openTelemetry": true }
   // https://opencode.ai/v2/docs/plugins

@@ -9,6 +9,9 @@ permissions:
   - action: shell
     resource: "*"
     effect: deny
+  - action: subagent
+    resource: "*"
+    effect: deny
 request:
   body:
     temperature: 0.2
