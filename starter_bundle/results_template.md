@@ -22,9 +22,10 @@ Paste the output here.
 <!--
 Task 6. For each test question, open its trace from the run in section 1 in Langfuse (Tracing,
 then the row whose Input is the question), and take a screenshot that shows the trace's tool
-calls and, at the top, its latency, cost and tokens. If a trace is taller than your screen, the
-top of it is enough. Some questions also produce a second trace, for a subagent: use the one
-whose Input is the question.
+calls and, at the top, its latency, cost and tokens.
+If a trace is taller than your screen, the top of it is enough.
+
+**Make sure to include the Metadata panel, so that attributes.session.id is visible. It must match the session: line for that question in section 1.**
 -->
 
 ### Q1

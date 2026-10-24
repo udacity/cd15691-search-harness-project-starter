@@ -217,8 +217,9 @@ starts.
 ### Task 2: Write the system prompt (TODO 2.1-2.2)
 
 Write the agent's system prompt, in the body of
-`.opencode/agents/onboarding-agent.md`. Tell the agent what it's for and when
-to escalate instead of guessing. You don't need to describe the tools: their
+`.opencode/agents/onboarding-agent.md`. Tell the agent what it's for, how to
+route its searches, and when to escalate instead of guessing. You don't need
+to describe the tools: their
 docstrings do that. Every tool call already
 says which sub-question it's answering and why that tool fits, through its
 `sub_question` and `rationale` parameters. Then set it as the default
@@ -270,7 +271,8 @@ traced, and find each question's trace in Langfuse (see
 [Tracing with Langfuse](#tracing-with-langfuse)). Each trace shows every tool
 call, with its tokens, latency and result. Paste this run's output into
 section 1 of `RESULTS.md`, and a screenshot of each question's trace into
-section 2.
+section 2. Include the trace's Metadata panel, so its `attributes.session.id`
+shows: it must match that question's `session:` line in section 1.
 
 ### Task 7: Compare with a codebase-search-only baseline (TODO 7.1)
 
