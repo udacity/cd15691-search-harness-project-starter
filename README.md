@@ -57,7 +57,8 @@ provided.
 
 ```
 .opencode/agents/onboarding-agent.md   The agent's system prompt (TODO 2.1)
-.vscode/tasks.json                     Starts the web search API when the folder opens in VS Code
+.vscode/settings.json                  Hides the Udacity workspace's Langfuse data in VS Code
+.vscode/tasks.json                     A VS Code task that starts the web search API
 opencode.jsonc                         Harness config: model, permissions, MCP servers, tracing
                                          (TODO 1.13, 2.2, 3.4, 6.1, 7.1)
 pyproject.toml                         Python dependencies (pinned) and pytest settings
@@ -75,6 +76,7 @@ scripts/
   smoke_test.sh                          Checks your setup before you run the agent
   run_test_questions.py                  Evaluation: runs the agent on the test questions: TODO 5.1-5.2
   helpers.py                             Provided helpers for run_test_questions.py
+  make_submission.py                     Zips the repo for submission
 tests/                                 pytest suite for the tools
 ```
 
@@ -87,6 +89,23 @@ tests/                                 pytest suite for the tools
 - Git
 - Docker, only to run Langfuse on your own machine (see
   [Tracing with Langfuse](#tracing-with-langfuse))
+
+### In the Udacity workspace
+
+The workspace opens in this repo, with everything installed and running:
+Python 3.12 with the project's packages, OpenCode 2.0.26, the web search API
+and Langfuse. In Getting Started, skip steps 2 and 4.
+
+- **What's kept when the workspace stops:** everything in this folder,
+  `/workspace`, including Langfuse's data. Your home folder, `/tmp` and the
+  variables you export aren't, so export your API key again in every new
+  terminal, including after VS Code reloads.
+- **Ports in use:** 3000 (VS Code), 3100, 3200 (Langfuse), 8000 (the web
+  search API) and 40006. Don't start other servers on them.
+- **If VS Code says "The workbench failed to connect to the server",** click
+  **Reload**. Your files are safe.
+- **If Python can't find a package,** use the system `python3`, not a virtual
+  environment of your own: the packages are installed for it.
 
 ### Install OpenCode
 
@@ -114,7 +133,7 @@ export OPENAI_BASE_URL="https://openai.vocareum.com/v1"
 Using your own OpenAI key instead of a Udacity one? Set the base URL to
 OpenAI's: `export OPENAI_BASE_URL="https://api.openai.com/v1"`. The agent and
 design-doc search both read `OPENAI_BASE_URL`, and the agent won't start
-without it.
+without it. Export both in every terminal you run the agent from.
 
 2- Install the Python dependencies
 
@@ -142,9 +161,9 @@ bash starter_bundle/scripts/clone_sample_repo.sh
 The web-search tool calls a local stand-in for a web search API at
 `http://127.0.0.1:8000`, so the API must be running whenever you use the agent.
 
-- **In the Udacity workspace, it starts on its own** when the workspace opens,
-  in a terminal panel called *Start web search API*. If that panel isn't there,
-  run `python3 -m web_api.server` from the repo root and leave it running.
+- **In the Udacity workspace, it's already running.** The workspace starts it
+  and restarts it if it stops, so don't start another copy: it would fail with
+  `address already in use`. Its log is `/tmp/web_api.log`.
 - **On your own machine,** run it yourself, from the repo root, in a terminal
   where your virtual environment is activated, and leave it running:
   ```bash
@@ -170,10 +189,15 @@ registered in `opencode.jsonc`, so run it again after TODO 1.13 and 3.4.
 The agent sends a trace of every run to [Langfuse](https://langfuse.com),
 through the Langfuse plugin you add to `opencode.jsonc` in task 6.
 
-- **In the Udacity workspace,** Langfuse is already running, so there's nothing
-  to set up. Open it on port 3000 and sign in as `student@example.com` with the
-  password `onboarding-agent`. Your traces are in the project *Onboarding
-  Agent*, in the organization *Udacity*.
+- **In the Udacity workspace,** Langfuse is already running, and its keys and
+  address are set in every terminal, so there's nothing to set up or export.
+  Open it at your workspace's address followed by `/proxy/3200/`: run
+  `echo $LANGFUSE_UI_URL` to print it. Sign in as `student@example.com` with
+  the password `onboarding-agent`. Your traces are in the project *Onboarding
+  Agent*, in the organization *Udacity*. If the page doesn't load right after
+  the workspace starts, wait a minute and refresh. Don't change the
+  `LANGFUSE_*` variables, and don't delete `.langfuse/`, which holds
+  Langfuse's data.
 - **On your own machine,** self-host it with Docker Compose. This project was
   tested with Langfuse **4.54.0**. Follow
   [Langfuse's Docker Compose guide](https://langfuse.com/self-hosting/deployment/docker-compose),
@@ -265,11 +289,10 @@ It prints a pass/fail summary and metrics, and saves the full results under
 
 ### Task 6: Trace the agent in Langfuse (TODO 6.1)
 
-Add the Langfuse plugin to `opencode.jsonc` and turn on OpenCode's
-OpenTelemetry export. Then run the evaluation again, so every test question is
-traced, and find each question's trace in Langfuse (see
-[Tracing with Langfuse](#tracing-with-langfuse)). Each trace shows every tool
-call, with its tokens, latency and result. Paste this run's output into
+Add the Langfuse plugin to `opencode.jsonc`. Then run the evaluation again,
+so every test question is traced, and find each question's trace in Langfuse
+(see [Tracing with Langfuse](#tracing-with-langfuse)). Each trace shows every
+tool call, with its tokens, latency and result. Paste this run's output into
 section 1 of `RESULTS.md`, and a screenshot of each question's trace into
 section 2. Include the trace's Metadata panel, so its `attributes.session.id`
 shows: it must match that question's `session:` line in section 1.
@@ -281,6 +304,18 @@ Switch off every server except `codebase-search` and `answer-gate` in
 `RESULTS.md`: this run's output, both runs' pass rate, total cost and total
 tokens, a screenshot of one trace from this run, and why the results differ.
 Then switch the servers back on.
+
+## Submitting
+
+Zip the repo with:
+```bash
+python3 scripts/make_submission.py
+```
+It writes `submission.zip` in the repo root, without what a reviewer doesn't
+need: the Udacity workspace's Langfuse database (`.langfuse/`, hundreds of MB),
+the unpacked sample repo, logs and caches. Use it rather than zipping the folder
+yourself. In the Udacity workspace, right-click `submission.zip` in VS Code's
+Explorer and choose **Download**, then upload it.
 
 ## Tests
 

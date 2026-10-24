@@ -1,7 +1,11 @@
 .DS_Store
 /starter_bundle/sample_repo/
+# The Udacity workspace's Langfuse database, in the repo folder there
+/.langfuse/
 .venv/
 .logs/
 __pycache__/
 .pytest_cache/
 *.egg-info/
+# The zip scripts/make_submission.py writes
+/submission.zip

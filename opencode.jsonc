@@ -42,7 +42,6 @@
   // your prompt when a run doesn't pass --agent.
   // https://opencode.ai/v2/docs/agents
   // TODO 6.1: Add the Langfuse plugin, @langfuse/opencode-observability-plugin@0.6.0,
-  // so every run is traced, and turn on OpenCode's OpenTelemetry export:
-  // "experimental": { "openTelemetry": true }
+  // so every run is traced.
   // https://opencode.ai/v2/docs/plugins
 }
