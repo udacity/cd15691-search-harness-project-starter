@@ -217,8 +217,9 @@ starts.
 ### Task 2: Write the system prompt (TODO 2.1-2.2)
 
 Write the agent's system prompt, in the body of
-`.opencode/agents/onboarding-agent.md`. Tell the agent what it's for and when
-to escalate instead of guessing. You don't need to describe the tools: their
+`.opencode/agents/onboarding-agent.md`. Tell the agent what it's for, how to
+route its searches, and when to escalate instead of guessing. You don't need
+to describe the tools: their
 docstrings do that. Every tool call already
 says which sub-question it's answering and why that tool fits, through its
 `sub_question` and `rationale` parameters. Then set it as the default

@@ -18,8 +18,8 @@ request:
 ---
 
 <!--
-TODO 2.1: Write the agent's system prompt. Tell it what it's for and
-when to escalate instead of guessing. You don't need to describe the
-tools: their docstrings do that.
+TODO 2.1: Write the agent's system prompt. Tell it what it's for, how
+to route its searches, and when to escalate instead of guessing. You
+don't need to describe the tools: their docstrings do that.
 Hint: Use negative examples to tell the agent what not to do.
 -->
