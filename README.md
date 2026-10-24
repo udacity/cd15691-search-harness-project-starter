@@ -270,7 +270,8 @@ traced, and find each question's trace in Langfuse (see
 [Tracing with Langfuse](#tracing-with-langfuse)). Each trace shows every tool
 call, with its tokens, latency and result. Paste this run's output into
 section 1 of `RESULTS.md`, and a screenshot of each question's trace into
-section 2.
+section 2. Include the trace's Metadata panel, so its `attributes.session.id`
+shows: it must match that question's `session:` line in section 1.
 
 ### Task 7: Compare with a codebase-search-only baseline (TODO 7.1)
 
