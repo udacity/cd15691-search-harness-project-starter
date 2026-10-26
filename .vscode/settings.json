@@ -1,0 +1,6 @@
+{
+  // The Udacity workspace keeps Langfuse's database in .langfuse/, in this
+  // folder. Hide it, and don't watch it: it changes all the time.
+  "files.exclude": { ".langfuse": true },
+  "files.watcherExclude": { "**/.langfuse/**": true }
+}

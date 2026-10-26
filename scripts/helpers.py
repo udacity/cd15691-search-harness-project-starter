@@ -6,6 +6,7 @@ how to print/save results.
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import sys
 from datetime import UTC, datetime
@@ -52,6 +53,10 @@ def run_and_export(question: str) -> dict[str, Any]:
             question,
         ],
         cwd=REPO_ROOT,
+        # OpenCode finds the project from PWD, not from the folder it starts
+        # in, so set PWD too. Otherwise, run from another folder, it can't
+        # find onboarding-agent.
+        env={**os.environ, "PWD": str(REPO_ROOT)},
         capture_output=True,
         text=True,
         timeout=300,
@@ -66,6 +71,16 @@ def run_and_export(question: str) -> dict[str, Any]:
             f"{question!r}\n--- stdout ---\n{run_result.stdout}\n"
             f"--- stderr ---\n{run_result.stderr}"
         ) from e
+    # A run that fails, for example on a wrong API key, still has a session,
+    # and would just score as a failed scenario. Say why.
+    for line in run_result.stdout.splitlines():
+        try:
+            event = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        if isinstance(event, dict) and event.get("type") == "error":
+            error = event.get("error") or {}
+            print(f"  opencode run failed: {error.get('message') or error}")
 
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     export_path = RESULTS_DIR / f"export_{session_id}.json"
